@@ -31,7 +31,7 @@ module.exports = {
             loader: 'babel-loader',
             options: { 
               presets: [
-                ['es2015', {
+                ['latest', {
                   'es2015': {
                     'loose': true,
                     'modules': false
@@ -39,6 +39,11 @@ module.exports = {
                 }],
                 'react'
               ], 
+              plugins: [
+                "transform-class-properties",
+                "transform-export-extensions",
+                "transform-object-rest-spread",
+              ],
             },
           },
         ],
