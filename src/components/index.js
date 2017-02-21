@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from './button/index.jsx';
+import  ButtonDemo from './button/demo.jsx';
 
 ReactDOM.render(
-  <Button />,
+  <ButtonDemo />,
   document.getElementById('app')
 );

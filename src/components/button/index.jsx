@@ -1,15 +1,34 @@
-import React, { Component } from 'react';
-import './style/index.scss';
+import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
+import '../style/index.jsx'; // style 集合
+import './style/index.scss'; // button style
 
 export default class Button extends Component {
-  
-  static props = {
-    supportESDev: true
+
+  static defaultProps = {
+    prefixCls: 'px-btn'
   }
-  
+
+  static propTypes = {
+    type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'danger']),
+    className: PropTypes.string
+  }
+
   render(){
+    const { type, htmlType, className, prefixCls } = this.props;
+
+    const classes = classNames(prefixCls, {
+      [`${prefixCls}-${type}`]: type
+    }, className);
+    console.log(18, classes);
+
     return (
-      <button>primary</button>
+      <button
+        type={htmlType || 'button'}
+        className={classes}
+      >
+        primary
+      </button>
     );
   }
 }

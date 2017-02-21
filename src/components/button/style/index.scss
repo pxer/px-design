@@ -1,7 +1,53 @@
-body {
-  background: #eee;
-  font-size:12px;
+@import "../../style/sass/theme.scss";
+@import "../../style/sass/colors.scss";
+
+$btn-prefix-cls        : #{$px-prefix}-btn;
+
+@mixin button-size($padding, $font-size, $border-radius) {
+  padding: $padding;
+  font-size: $font-size;
+  border-radius: $border-radius;
 }
-button {
-  background: #0982c1;
-} 
+
+@mixin button-color($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+}
+
+@mixin btn() {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: $border-width-base $border-style-base transparent;
+  white-space: nowrap;
+  line-height: $line-height-base;
+  @include button-size($btn-padding-base, $font-size-base, $btn-border-radius-base);
+  user-select: none;
+  transition: all .3s $ease-in-out;
+  position: relative;
+}
+
+@mixin button-variant-primary($color, $background) {
+  @include button-color($color, $background, $background);
+}
+
+@mixin button-variant-default($color, $background, $border) {
+  @include button-color($color, $background, $border);
+}
+
+.#{$btn-prefix-cls} {
+  @include btn();
+}
+
+.#{$btn-prefix-cls}-primary {
+  @include button-variant-primary($btn-primary-color, $btn-primary-bg);
+}
+
+.#{$btn-prefix-cls}-default {
+  @include button-variant-default($btn-default-color, $btn-default-bg, $btn-default-border);
+}
