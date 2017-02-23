@@ -1,0 +1,155 @@
+// mixins for button
+
+@mixin button-size($padding, $font-size, $border-radius) {
+  padding: $padding;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+@mixin button-color($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+}
+
+@mixin button-disabled() {
+  &.disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      @include button-color($btn-disable-color, $btn-disable-bg, $btn-disable-border);
+    }
+  }
+}
+
+@mixin btn() {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: $border-width-base $border-style-base transparent;
+  white-space: nowrap;
+  line-height: $line-height-base;
+  @include button-size($btn-padding-base, $font-size-base, $btn-border-radius-base);
+  user-select: none;
+  transition: all .3s $ease-in-out;
+  position: relative;
+
+  &,
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+
+  &:not([disabled]):hover {
+    text-decoration: none;
+  }
+
+  &:not([disabled]):active {
+    outline: 0;
+    transition: none;
+  }
+
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    > * {
+      pointer-events: none;
+    }
+  }
+
+  &-lg {
+    @include button-size($btn-padding-lg, $btn-font-size-lg, $btn-border-radius-base);
+  }
+
+  &-sm {
+    @include button-size($btn-padding-sm, $font-size-base, $btn-border-radius-sm);
+  }
+}
+
+// pure button style
+@mixin button-variant-primary($color, $background) {
+  @include button-color($color, $background, $background);
+  &:hover,
+  &:focus {
+    @include button-color($color, lighten($background, 10%), lighten($background, 10%));
+  }
+
+  &:active,
+  &.active {
+    @include button-color($color, darken($background, 15%), darken($background, 15%));
+  }
+
+  @include button-disabled();
+}
+
+@mixin button-variant-other($color, $background, $border) {
+  @include button-color($color, $background, $border);
+  &:hover,
+  &:focus {
+    @include button-color($primary-5, $background, $primary-5);
+  }
+
+  &:active,
+  &.active {
+    @include button-color($primary-7, $background, $primary-7);
+  }
+
+  @include button-disabled();
+}
+
+@mixin btn-primary() {
+  @include button-variant-primary($btn-primary-color, $btn-primary-bg);
+}
+
+@mixin btn-default() {
+  @include button-variant-other($btn-default-color, $btn-default-bg, $btn-default-border);
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    background: #fff;
+  }
+}
+
+@mixin btn-ghost() {
+  @include button-variant-other($btn-ghost-color, $btn-ghost-bg, $btn-ghost-border);
+}
+
+@mixin btn-dashed() {
+  @include button-variant-other($btn-default-color, $btn-default-bg, $btn-default-border);
+  border-style: dashed;
+}
+
+@mixin btn-danger() {
+  @include button-variant-primary($btn-danger-color, $btn-danger-bg);
+}
+
+@mixin btn-success() {
+  @include button-variant-primary($btn-success-color, $btn-success-bg);
+}
+
+@mixin btn-warning() {
+  @include button-variant-primary($btn-warning-color, $btn-warning-bg);
+}
+
+@mixin btn-circle($btnClassName: btn) {
+  @include square($btn-circle-size);
+  @include button-size(0, $font-size-base + 2, 50%);
+
+  &.#{$btnClassName}-lg {
+    @include square($btn-circle-size-lg);
+    @include button-size(0, $font-size-base + 2, 50%);
+  }
+
+  &.#{$btnClassName}-sm {
+    @include square($btn-circle-size-sm);
+    @include button-size(0, $font-size-base, 50%);
+  }
+}
