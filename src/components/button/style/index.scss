@@ -34,7 +34,7 @@ $btn-prefix-cls        : #{$px-prefix}-btn;
     @include btn-warning;
   }
 
-  &-cicle {
+  &-circle {
     @include btn-circle($btn-prefix-cls);
   }
 }

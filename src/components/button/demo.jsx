@@ -28,9 +28,9 @@ export default class Demo extends Component {
         <Button size="large">Large</Button>
         <br />
 
-        <Button size="small" shape="cicle">1</Button>
-        <Button shape="cicle">2</Button>
-        <Button size="large" shape="cicle">3</Button>
+        <Button shape="circle" size="small">1</Button>
+        <Button shape="circle">2</Button>
+        <Button shape="circle" size="large">3</Button>
         <br />
 
         {/*
