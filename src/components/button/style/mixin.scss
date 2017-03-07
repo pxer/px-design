@@ -25,6 +25,34 @@
   }
 }
 
+@mixin button-group-base($btnClassName) {
+  position: relative;
+  display: inline-block;
+  > .#{$btnClassName} {
+    position: relative;
+    z-index: 1;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 2;
+    }
+
+    &:disabled {
+      z-index: 0;
+    }
+  }
+
+  &-lg > .#{$btnClassName} {
+    @include button-size($btn-padding-lg, $btn-font-size-lg, $btn-border-radius-base);
+  }
+
+  &-sm > .#{$btnClassName} {
+    @include button-size($btn-padding-sm, $font-size-base, $btn-border-radius-sm);
+  }
+}
+
 @mixin btn() {
   display: inline-block;
   margin-bottom: 0;
@@ -151,5 +179,60 @@
   &.#{$btnClassName}-sm {
     @include square($btn-circle-size-sm);
     @include button-size(0, $font-size-base, 50%);
+  }
+}
+
+// Horizontal button groups style
+@mixin btn-group($btnClassName: btn) {
+  @include button-group-base($btnClassName);
+
+  .#{$btnClassName} + .#{$btnClassName},
+  .#{$btnClassName} + &,
+  & + .#{$btnClassName},
+  & + & {
+    margin-left: -1px;
+  }
+
+  .#{$btnClassName}:not(:first-child):not(:last-child) {
+    border-radius: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  > .#{$btnClassName}:first-child {
+    margin-left: 0;
+    &:not(:last-child) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-left: 8px;
+    }
+  }
+
+  > .#{$btnClassName}:last-child:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding-left: 8px;
+  }
+
+  & > & {
+    float: left;
+  }
+
+  & > &:not(:first-child):not(:last-child) > .#{$btnClassName} {
+    border-radius: 0;
+  }
+
+  & > &:first-child:not(:last-child) {
+    > .#{$btnClassName}:last-child {
+      border-bottom-right-radius: 0;
+      border-top-left-radius: 0;
+      padding-right: 8px;
+    }
+  }
+
+  & > &:last-child:not(:first-child) > .#{$btnClassName}:first-child {
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-left: 8px;
   }
 }

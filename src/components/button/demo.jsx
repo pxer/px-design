@@ -19,7 +19,7 @@ export default class Demo extends Component {
         <Button type="success">Success</Button>
         <br />
 
-        <Button>中文</Button>
+        <Button><span>中文</span></Button>
         <Button>English</Button>
         <br />
 
@@ -33,9 +33,18 @@ export default class Demo extends Component {
         <Button shape="circle" size="large">3</Button>
         <br />
 
-        {/*
-          <Button ></Button>
-        */}
+        <Button.Group size="small">
+          <Button>small</Button>
+          <Button>button</Button>
+          <Button>group</Button>
+        </Button.Group>
+        <br />
+
+        <Button.Group size="large">
+          <Button>large</Button>
+          <Button>button</Button>
+          <Button>group</Button>
+        </Button.Group>
       </div>
     )
   }

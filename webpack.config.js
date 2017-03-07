@@ -29,7 +29,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: { 
+            options: {
               presets: [
                 ['latest', {
                   'es2015': {
@@ -38,7 +38,7 @@ module.exports = {
                   }
                 }],
                 'react'
-              ], 
+              ],
               plugins: [
                 "transform-class-properties",
                 "transform-export-extensions",

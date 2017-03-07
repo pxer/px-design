@@ -37,4 +37,8 @@ $btn-prefix-cls        : #{$px-prefix}-btn;
   &-circle {
     @include btn-circle($btn-prefix-cls);
   }
+
+  &-group {
+    @include btn-group($btn-prefix-cls);
+  }
 }
